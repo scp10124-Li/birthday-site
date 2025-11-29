@@ -1,0 +1,115 @@
+/* -------------------- 基礎設定 -------------------- */
+:root {
+  --cake-color: #f7e0c4; /* 蛋糕主體顏色 (淺米黃) */
+  --icing-color: #fff;  /* 奶油顏色 (白色) */
+  --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+.cake-wrapper {
+  /* 設置 3D 視角，讓蛋糕看起來有透視感 */
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+/* -------------------- 蛋糕主體 (3D 核心) -------------------- */
+.cake-base {
+  position: relative;
+  /* 讓整個蛋糕往後傾斜，模擬 3D 視角 */
+  transform: rotateX(45deg) rotateZ(5deg);
+}
+
+.layer {
+  position: absolute;
+  width: 250px;
+  height: 50px;
+  border-radius: 50%; /* 圓柱體側面效果 */
+  background-color: var(--cake-color);
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 5px 10px var(--shadow-color);
+}
+
+.bottom-layer {
+  width: 280px; /* 底部稍微寬一點 */
+  height: 60px;
+  background: linear-gradient(to bottom, #f7e0c4, #e9c9a5); /* 底部漸變 */
+  z-index: 1;
+  top: 60px;
+}
+
+.middle-layer {
+  width: 260px;
+  z-index: 2;
+  top: 30px;
+}
+
+.top-layer {
+  width: 250px;
+  z-index: 3;
+  top: 0;
+  height: 30px; /* 頂層奶油的基座 */
+}
+
+/* -------------------- 頂部和糖霜 -------------------- */
+.cake-top {
+  position: absolute;
+  top: -15px; /* 放在最上層蛋糕體上方 */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  height: 120px; /* 使用高度來創造橢圓形 */
+  background-color: var(--icing-color);
+  border-radius: 50% / 50px 50px 0 0; /* 橢圓形頂部 */
+  z-index: 4;
+  /* 模擬頂部奶油的光澤 */
+  box-shadow: 0 -5px 10px rgba(255, 255, 255, 0.5) inset, 0 5px 5px var(--shadow-color);
+}
+
+/* 糖霜/奶油邊緣裝飾 */
+.icing-rim {
+  position: absolute;
+  width: 250px;
+  height: 30px;
+  background-color: var(--icing-color);
+  border-radius: 50%;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  /* 創建奶油擠花的波浪感 */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* -------------------- 櫻桃裝飾 -------------------- */
+.cherry {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: #a00000; /* 深紅色 */
+  border-radius: 50%;
+  z-index: 6;
+  /* 讓櫻桃看起來圓潤有光澤 */
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.4), 
+              inset 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.cherry-1 { top: 10px; left: 20px; }
+.cherry-2 { top: 5px; left: 100px; }
+.cherry-3 { top: 15px; left: 180px; }
+
+/* -------------------- 盤子 -------------------- */
+.plate {
+  position: absolute;
+  width: 350px;
+  height: 50px;
+  background-color: #ccc; /* 灰色盤子 */
+  border-radius: 50%;
+  top: 100px; /* 放在蛋糕底部下方 */
+  z-index: 0;
+  /* 盤子的陰影和厚度 */
+  box-shadow: 0 10px 15px var(--shadow-color);
+  transform: rotateX(45deg); /* 與蛋糕主體相同的傾斜度 */
+}

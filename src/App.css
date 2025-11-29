@@ -1,0 +1,348 @@
+/* App.css */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+
+/* -------------------- 全局背景 & 佈局 -------------------- */
+body, html {
+  margin: 0; /* 移除瀏覽器預設的外距，讓頁面頂端無空隙 */
+  padding: 0; /* 移除瀏覽器預設的內距 */
+  font-family: 'Poppins', sans-serif; /* 設定全站字體為 Poppins（可替換） */
+}
+
+/* 最外層應用背景容器 */
+.app-background {
+  position: relative; /* 讓內部絕對定位元素（如背景影片）以此為參考 */
+  min-height: 100vh; /* 最小高度為整個視窗高度，確保覆滿畫面 */
+  display: flex; /* 使用 flex 方便做上下排列與置中 */
+  flex-direction: column; /* 直向排列（上到下） */
+  align-items: center; /* 子元素水平置中 */
+  justify-content: flex-start; /* 子元素從上方開始排列 */
+  background-color: #d9d9d9; /* 高級灰背景色 */
+  overflow: hidden; /* 隱藏超出容器的內容（例如影片溢出） */
+  padding-top: 50px; /* 頂部間距，避免內容貼到頂端 */
+}
+
+/* 背景影片樣式 */
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 110vw;
+  height: 110vh;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.3;
+  transform: scale(1.1);
+  transition: transform 0.3s ease-out;
+}
+
+
+/* -------------------- 蛋糕區 -------------------- */
+/* 蛋糕整體外層容器 */
+.cake-section {
+  display: flex;                /* 讓蛋糕和文字並排 */
+  align-items: center;          /* 垂直置中 */
+  justify-content: center;      /* 整體水平置中 */
+  gap: 60px;                    /* 蛋糕與文字間距 */
+  margin-top: 200px;            /* 與上方的距離（可自行調整） */
+  position: relative;
+  background-color: #ffffff;
+  z-index: 5;
+}
+/* -------------------- 蛋糕區文字 ------------------ */
+.birthday-text {
+  position: absolute;      /* 絕對定位 */
+  right: 0;                /* 靠最右邊 */
+  top: 50%;                /* 垂直置中（可調整） */
+  transform: translateY(-50%); /* 垂直置中修正 */
+  text-align: right;
+  font-family: 'Noto Sans SC', sans-serif;
+  color: #ffffff;
+}
+
+.birthday-text .main {
+  font-size: 8vw; /* 文字大小會隨螢幕寬度改變 */
+  font-weight: 600;         /* 極粗，氣勢感 */
+}
+
+.birthday-text .name {
+  font-size: 5vw;
+  font-weight: 700;         /* 粗體 */
+}
+
+/* -------------------- 蛋糕本體 -------------------- */
+.container {
+  display: flex;             /* 啟用 Flexbox */
+  justify-content: space-between; /* 左右分散對齊 */
+  align-items: center;       /* 垂直置中 */
+  width: 100%;               /* 佔滿整個容器寬度 */
+  max-width: 1200px;         /* 可限制最大寬度 */
+  margin: 480px auto 400px;         /* 上下間距 + 居中 */
+  position: relative;
+  z-index: 5;
+
+  transform: scale(1.5);
+}
+
+.cake-container {
+  width: 380px;
+  height: 380px;
+  background-color: #545454;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 15%;
+  border-radius: 8px;
+  box-shadow: 0 20px 45px rgba(120, 76, 10, 0.25);
+}
+
+/* 蛋糕主要區塊（可包含多層） */
+.cake {
+  width: 100%;
+  position: absolute;
+  bottom: 60px;
+}
+
+/* 第一層（底層）的漸層色 */
+.bottom-layer,
+.top-layer,
+.middle-layer {
+  height: 80px;
+  width: 240px;
+  position: relative;
+  margin: auto;
+  background-repeat: repeat;
+  border-radius: 8px;
+  background-size: 100% 100%, 60px 100px;
+  background-position: 28px 0;
+  background-image: linear-gradient(
+      transparent 50px,
+      #e3a953 50px,
+      #e3a953 60px,
+      transparent 60px
+    ),
+    radial-gradient(circle at 30px 5px, #713e16 30px, #eac284 31px);
+}
+
+.middle-layer {
+  transform: scale(0.85);
+  top: 72px;
+  animation: rise-1 1.5s forwards;
+}
+@keyframes rise-1 {
+  100% {
+    top: 7px;
+  }
+}
+.top-layer {
+  transform: scale(0.7);
+  top: 144px;
+  animation: rise-2 1.5s 1s forwards;
+}
+@keyframes rise-2 {
+  100% {
+    top: 26px;
+  }
+}
+/* -------------------- 蠟燭 -------------------- */
+.candle {
+  background-color: #ffffff;
+  height: 45px;
+  width: 15px;
+  position: absolute;
+  margin: auto;
+  border-radius: 4px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  animation: rise-3 1.5s 2s forwards;
+}
+@keyframes rise-3 {
+  100% {
+    bottom: 202px;
+  }
+}
+.candle:after {
+  content: "";
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  background-color: #ffee54;
+  border-radius: 0 50% 50% 50%;
+  transform: scale(0) rotate(45deg);
+  bottom: 50px;
+  left: -0.5px;
+  animation: flame 1.5s 5s forwards;
+}
+.flame {
+  position: absolute;
+  bottom: 45;
+  left: 28%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  opacity: 0.9;
+  animation-name: flicker;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+/* 外層火焰（橘黃） */
+.main-flame {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, #ffb400 0%, transparent 70%);
+  animation-duration: 0.5s;
+}
+
+/* 中層火焰（偏紅） */
+.medium-flame {
+  width: 80%;
+  height: 80%;
+  background: radial-gradient(circle, #ff4500 0%, transparent 80%);
+  animation-duration: 0.6s;
+}
+
+/* 內層火焰（白黃亮點） */
+.small-flame {
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, #fff 0%, #ffc300 30%, transparent 90%);
+  animation-duration: 0.7s;
+}
+
+/* 閃爍動畫 */
+@keyframes flicker {
+  0% { transform: translate(-50%) scale(1) rotate(0deg); opacity: 0.9; }
+  25% { transform: translate(-45%, -5px) scale(1.05) rotate(1deg); opacity: 1; }
+  50% { transform: translate(-55%, 0) scale(0.95) rotate(-1deg); opacity: 0.85; }
+  75% { transform: translate(-50%, -2px) scale(1.02) rotate(0.5deg); opacity: 0.95; }
+  100% { transform: translate(-50%) scale(1) rotate(0deg); opacity: 0.9; }
+}
+
+/* -------------------- 無縫輪播 -------------------- */
+.carousel-viewport {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  margin-top: 50px;
+}
+
+.card-stack {
+  display: flex;
+  gap: 20px;
+  animation: scrollLoop 30s linear infinite;
+}
+
+@keyframes scrollLoop {
+  from { transform: translateX(0); }
+  to { transform: translateX(var(--scroll-distance)); }
+}
+
+.card {
+  flex-shrink: 0;
+  width: 390px;
+  height: 600px;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(88, 166, 255, 0.5);
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* -------------------- Mobile Responsive -------------------- */
+@media (max-width: 768px) {
+
+  /* 調整背景影片 */
+  .background-video {
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.2;
+  }
+
+  /* 整體容器重新排版 */
+  .container {
+    transform: scale(1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin: 180px auto 100px;
+  }
+
+  /* 蛋糕大小縮放 */
+  .cake-container {
+    width: 260px;
+    height: 260px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Cake 多層體積縮放 */
+  .cake .bottom-layer,
+  .cake .middle-layer,
+  .cake .top-layer {
+    width: 160px;
+    height: 60px;
+  }
+
+  /* Candle 調整高度 */
+  .candle {
+    height: 35px;
+    width: 10px;
+  }
+
+  /* 文字調整 */
+  .birthday-text {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .birthday-text .main {
+    font-size: 10vw;
+  }
+
+  .birthday-text .name {
+    font-size: 7vw;
+  }
+
+  /* Carousel 調整 */
+  .carousel-viewport {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .card-stack {
+    display: flex;
+    gap: 10px;
+  }
+
+  .card img {
+    width: 45vw;
+    height: auto;
+    border-radius: 10px;
+  }
+}
+
